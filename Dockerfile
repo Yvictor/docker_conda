@@ -30,6 +30,7 @@ RUN [ "/bin/bash" ]
 CMD [ "/bin/bash" ]
 
 RUN conda install numpy pandas -y
+RUN conda install scipy theano -y
 RUN conda install h5py pytables -y
 RUN conda install pillow html5lib lxml -y
 
