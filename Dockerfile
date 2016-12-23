@@ -1,7 +1,7 @@
 # Created on Dec, 18, 2016
 # @author: Yvictor
 
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 MAINTAINER yvictor
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
@@ -29,10 +29,7 @@ ENTRYPOINT [ "/usr/bin/tini", "--" ]
 RUN [ "/bin/bash" ]
 CMD [ "/bin/bash" ]
 
-RUN conda install numpy pandas -y
-RUN conda install scipy theano -y
-RUN conda install h5py pytables -y
-RUN conda install pillow html5lib lxml -y
+RUN conda install numpy pandas scipy theano h5py pytables pillow html5lib lxml -y
 RUN pip install keras==1.1.2
 
 CMD [ "/bin/bash" ]
