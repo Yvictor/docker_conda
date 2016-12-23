@@ -33,6 +33,6 @@ RUN conda install numpy pandas -y
 RUN conda install scipy theano -y
 RUN conda install h5py pytables -y
 RUN conda install pillow html5lib lxml -y
-RUN pip install keras
+RUN pip install keras==1.1.2
 
 CMD [ "/bin/bash" ]
