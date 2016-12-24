@@ -29,7 +29,8 @@ ENTRYPOINT [ "/usr/bin/tini", "--" ]
 RUN [ "/bin/bash" ]
 CMD [ "/bin/bash" ]
 
-RUN conda install numpy pandas scipy theano h5py pytables pillow html5lib lxml -y
+RUN conda install numpy pandas scipy theano h5py pytables pillow html5lib -y
+RUN conda install -c anaconda beautifulsoup4 lxml=3.7.0 -y
 RUN pip install keras==1.1.2
 
 CMD [ "/bin/bash" ]
