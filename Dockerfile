@@ -15,12 +15,19 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     /bin/bash ~/miniconda.sh -b -p /opt/conda && \
     rm ~/miniconda.sh
 
-RUN apt-get install -y curl grep sed dpkg && \
+RUN apt-get install -y curl grep sed dpkg xvfb && \
     TINI_VERSION=`curl https://github.com/krallin/tini/releases/latest | grep -o "/v.*\"" | sed 's:^..\(.*\).$:\1:'` && \
     curl -L "https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini_${TINI_VERSION}.deb" > tini.deb && \
     dpkg -i tini.deb && \
     rm tini.deb && \
     apt-get clean
+
+RUN wget https://github.com/mozilla/geckodriver/releases/download/v0.12.0/geckodriver-v0.12.0-linux64.tar.gz \
+    tar -xvf geckodriver-v0.12.0-linux64.tar.gz \
+    mv geckodriver /bin/geckodriver
+
+#RUN curl "https://gist.githubusercontent.com/amberj/6695353/raw/d7d981379c9602e6323d09a90d6a84cd3e3177a2/setup-headless-selenium-xvfb.sh"
+    #/bin/bash setup-headless-selenium-xvfb.sh
 
 ENV PATH /opt/conda/bin:$PATH
 
@@ -31,6 +38,7 @@ CMD [ "/bin/bash" ]
 
 RUN conda install numpy pandas scipy theano h5py pytables pillow html5lib -y
 RUN conda install -c anaconda beautifulsoup4 lxml=3.7.0 -y
-RUN pip install keras==1.1.2
+RUN conda install -c conda-forge tensorflow=0.10.0 -y
+RUN pip install selenium xvfbwrapper PyVirtualDisplay keras==1.1.1
 
 CMD [ "/bin/bash" ]
