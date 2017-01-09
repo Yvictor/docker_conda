@@ -22,7 +22,10 @@ RUN apt-get install -y curl grep sed dpkg git xvfb && \
     rm tini.deb && \
     apt-get clean
 
-#ADD https://github.com/mozilla/geckodriver/releases/download/v0.12.0/geckodriver-v0.12.0-linux64.tar.gz /opt/conda/bin/#/usr/local/bin/
+ADD https://github.com/mozilla/geckodriver/releases/download/v0.12.0/geckodriver-v0.12.0-linux64.tar.gz /usr/local/bin/
+WORKDIR /usr/local/bin/
+RUN tar -xvf geckodriver-v0.12.0-linux64.tar.gz && \
+    rm geckodriver-v0.12.0-linux64.tar.gz
 
 #RUN wget --quiet  -O ~/geckodriver.tar.gz && \
     #tar -xvf ~/geckodriver.tar.gz
@@ -39,15 +42,15 @@ ENTRYPOINT [ "/usr/bin/tini", "--" ]
 RUN [ "/bin/bash" ]
 CMD [ "/bin/bash" ]
 
-#RUN conda install numpy pandas scipy theano h5py pytables pillow html5lib -y
-#RUN conda install -c anaconda beautifulsoup4 lxml=3.7.0 -y
-#RUN conda install -c conda-forge tensorflow=0.10.0 -y
-RUN pip install selenium xvfbwrapper PyVirtualDisplay #keras==1.1.1
+RUN conda install numpy pandas scipy theano h5py pytables pillow html5lib -y
+RUN conda install -c anaconda beautifulsoup4 lxml=3.7.0 -y
+RUN conda install -c conda-forge tensorflow=0.10.0 -y
+RUN pip install selenium xvfbwrapper PyVirtualDisplay keras==1.1.1
 
 CMD [ "/bin/bash" ]
 
-COPY . /docker_conda
-WORKDIR /docker_conda
+#COPY . /docker_conda
+#WORKDIR /docker_conda
 
 #RUN python test.py
 
