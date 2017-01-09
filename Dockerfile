@@ -22,7 +22,8 @@ RUN apt-get install -y curl grep sed dpkg git xvfb && \
     rm tini.deb && \
     apt-get clean
 
-ADD https://github.com/mozilla/geckodriver/releases/download/v0.12.0/geckodriver-v0.12.0-linux64.tar.gz /usr/local/bin/
+ADD https://github.com/mozilla/geckodriver/releases/download/v0.12.0/geckodriver-v0.12.0-linux64.tar.gz /opt/conda/bin/#/usr/local/bin/
+RUN
 #RUN wget --quiet  -O ~/geckodriver.tar.gz && \
     #tar -xvf ~/geckodriver.tar.gz
     #rm ~/geckodriver.tar.gz \
