@@ -22,10 +22,11 @@ RUN apt-get install -y curl grep sed dpkg git xvfb && \
     rm tini.deb && \
     apt-get clean
 
-RUN wget --quiet https://github.com/mozilla/geckodriver/releases/download/v0.12.0/geckodriver-v0.12.0-linux64.tar.gz -O ~/geckodriver.tar.gz && \
-    tar -xvf ~/geckodriver.tar.gz
+ADD https://github.com/mozilla/geckodriver/releases/download/v0.12.0/geckodriver-v0.12.0-linux64.tar.gz /bin/
+#RUN wget --quiet  -O ~/geckodriver.tar.gz && \
+    #tar -xvf ~/geckodriver.tar.gz
     #rm ~/geckodriver.tar.gz \
-    mv ~/geckodriver /bin/geckodriver
+    #mv ~/geckodriver /bin/geckodriver
 
 #RUN curl "https://gist.githubusercontent.com/amberj/6695353/raw/d7d981379c9602e6323d09a90d6a84cd3e3177a2/setup-headless-selenium-xvfb.sh"
     #/bin/bash setup-headless-selenium-xvfb.sh
