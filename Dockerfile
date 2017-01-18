@@ -42,6 +42,7 @@ ENTRYPOINT [ "/usr/bin/tini", "--" ]
 RUN [ "/bin/bash" ]
 CMD [ "/bin/bash" ]
 
+WORKDIR /home
 RUN conda install numpy pandas scipy theano h5py pytables pillow html5lib -y
 RUN conda install -c anaconda beautifulsoup4 lxml=3.7.0 -y
 RUN conda install -c conda-forge tensorflow=0.10.0 -y
@@ -49,8 +50,8 @@ RUN pip install selenium xvfbwrapper PyVirtualDisplay keras==1.1.1
 
 CMD [ "/bin/bash" ]
 
-#COPY . /docker_conda
-#WORKDIR /docker_conda
+COPY . /docker_conda
+WORKDIR /docker_conda
 
-#RUN python test.py
+RUN python test.py
 
